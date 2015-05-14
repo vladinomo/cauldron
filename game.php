@@ -21,7 +21,7 @@ class Game{
 		$this->checkTurnEnd();
 	}
 
-	#¥²¡¼¥à¥¹¥¿¡¼¥È»ş¤Î½èÍı
+	#ã‚²ãƒ¼ãƒ ã‚¹ã‚¿ãƒ¼ãƒˆæ™‚ã®å‡¦ç†
 	function startGame(){
 	
 		$this->status = "started";
@@ -40,7 +40,7 @@ class Game{
 	
 	}
 	
-	#¥²¡¼¥à¥ê¥»¥Ã¥È»ş¤Î½èÍı
+	#ã‚²ãƒ¼ãƒ ãƒªã‚»ãƒƒãƒˆæ™‚ã®å‡¦ç†
 	function resetGame(){
 	
 		$flat = "";
@@ -71,7 +71,7 @@ class Game{
 	
 	}
 
-	#ÁÇºà¥Ç¡¼¥¿ÆÉ¤ß¹ş¤ß
+	#ç´ æãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	function readMaterialData(){
 		$fp = fopen("material.dat", "r");
 		$matnum=0;
@@ -91,7 +91,7 @@ class Game{
 		return $materials;
 	}
 	
-	#¥İ¡¼¥·¥ç¥ó¥Ç¡¼¥¿ÆÉ¤ß¹ş¤ß
+	#ãƒãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	function readPotionData(){
 		$fp = fopen("potion.dat", "r");
 		$potnum=0;
@@ -111,7 +111,7 @@ class Game{
 		return $potions;
 	}
 
-	#Ä´¹çÉ½¤ÎºîÀ®¡Ê¥²¡¼¥à³«»Ï»ş¡Ë
+	#èª¿åˆè¡¨ã®ä½œæˆï¼ˆã‚²ãƒ¼ãƒ é–‹å§‹æ™‚ï¼‰
 	function makePotionTable(){
 		$flat = array();
 		for($i=0;$i<15;$i++){
@@ -130,7 +130,7 @@ class Game{
 		return $flat;
 	}
 
-	#¥×¥ì¥¤¥ä¡¼¥Ç¡¼¥¿¤ÎÆÉ¤ß¹ş¤ß
+	#ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
 	function setPlayerData() {
 		$fp = fopen("user.log", "r");
 		$usernum=0;
@@ -193,7 +193,7 @@ class Game{
 		return $userdata;
 	}
 
-	#¥×¥ì¥¤¥ä¡¼¥Ç¡¼¥¿¤«¤é¼«Ê¬¤Î¥Ç¡¼¥¿¤ò¥³¥Ô¡¼¤¹¤ë
+	#ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 	function setPlayer($id) {
 		$_SESSION["id"] = $id;
 		foreach($this->userdata as $data){
@@ -210,7 +210,7 @@ class Game{
 		}
 	}
 	
-	#¥·¥¹¥Æ¥à¥Ç¡¼¥¿¤òÆÉ¤ß¹ş¤à
+	#ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 	function readGameData(){
 		$fp = fopen("gamedata.log", "r");
 		$i=0;
@@ -244,7 +244,7 @@ class Game{
 		}
 	}
 	
-	#¥í¥°¤òÆÉ¤ß¹ş¤à¡Ê¥×¥ì¥¤¥ä¡¼ID»ØÄê
+	#ãƒ­ã‚°ã‚’èª­ã¿è¾¼ã‚€ï¼ˆãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼IDæŒ‡å®š
 	function readGameLog($id){
 		$i=0;
 		$gamelog = array();
@@ -263,7 +263,7 @@ class Game{
 		return $pldata;
 	}
 	
-	#¥í¥°¤òÁ´¤ÆÆÉ¤à
+	#ãƒ­ã‚°ã‚’å…¨ã¦èª­ã‚€
 	function readGameLogAll(){
 		$i=0;
 		$gamelog = array();
@@ -276,7 +276,7 @@ class Game{
 		return $gamelog;
 	}
 
-	#¥¿¡¼¥ó¤¬½ªÎ»¤·¤¿¤«¤É¤¦¤«¥Á¥§¥Ã¥¯¡¢½ª¤ï¤Ã¤Æ¤¿¤é½èÍı
+	#ã‚¿ãƒ¼ãƒ³ãŒçµ‚äº†ã—ãŸã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯ã€çµ‚ã‚ã£ã¦ãŸã‚‰å‡¦ç†
 	function checkTurnEnd() {
 		if(!$this->status) return;
 		$count = 0;
@@ -346,14 +346,14 @@ class Game{
 		}
 		$this->savePlayerData();
 		
-		#¤½¤ÎÆü¤Î¥í¥°¤ò¥ê¥»¥Ã¥È
+		#ãã®æ—¥ã®ãƒ­ã‚°ã‚’ãƒªã‚»ãƒƒãƒˆ
 		copy( "./gamelog.log", "./prevlog.log");
 		$fp = fopen("gamelog.log", "w");
 		fclose($fp);
 		$this->addLog("day:".$this->day);
 	}
 	
-	#ÆüÂØ¤ï¤ê¥İ¡¼¥·¥ç¥ó¤òÊÖ¤¹¡£ÇÛÎó¤È¤·¤ÆÊÖ¤¹¤³¤È¤ËÃí°Õ
+	#æ—¥æ›¿ã‚ã‚Šãƒãƒ¼ã‚·ãƒ§ãƒ³ã‚’è¿”ã™ã€‚é…åˆ—ã¨ã—ã¦è¿”ã™ã“ã¨ã«æ³¨æ„
 	function getDailyPotion(){
 		while(TRUE){
 			$daily1 = mt_rand(0,POTION_NO-1);
@@ -366,7 +366,7 @@ class Game{
 		return array($daily1,$daily2);
 	}
 
-	#¥İ¡¼¥·¥ç¥ó¤Î¸ú²Ì¤ò²ò·è¤¹¤ë(checkTurnEnd¤«¤éÈô¤Ö)
+	#ãƒãƒ¼ã‚·ãƒ§ãƒ³ã®åŠ¹æœã‚’è§£æ±ºã™ã‚‹(checkTurnEndã‹ã‚‰é£›ã¶)
 	function resolvePotion($no,$log) {
 		if(!preg_match('/^use potion\(([0-9]+)\)$/',$log,$match)) return FALSE;
 		switch($match[1]){
@@ -389,7 +389,7 @@ class Game{
 		}
 	}
 	
-	#ÂĞ¼ö¤Î¥İ¡¼¥·¥ç¥ó¤ò¥Á¥§¥Ã¥¯
+	#å¯¾å‘ªã®ãƒãƒ¼ã‚·ãƒ§ãƒ³ã‚’ãƒã‚§ãƒƒã‚¯
 	function checkResistance($no,$log){
 		foreach($log as $l) {
 			if(preg_match('/use potion\('.TAIJU.'\)/',$l)){
@@ -399,7 +399,7 @@ class Game{
 		}
 	}
 	
-	#½¹°­¤Î¼ö¤¤¥Á¥§¥Ã¥¯
+	#é†œæ‚ªã®å‘ªã„ãƒã‚§ãƒƒã‚¯
 	function checkUgly(){
 	
 		$resist = 0;
@@ -425,7 +425,7 @@ class Game{
 		return FALSE;
 	}
 	
-	#Å·¸õ·èÄê
+	#å¤©å€™æ±ºå®š
 	function setWeather() {
 		$gamelog = $this->readGameLogAll();
 		$rainycount=0;
@@ -448,48 +448,48 @@ class Game{
 		}
 	}
 
-	#¿·µ¬ÅĞÏ¿¥Á¥§¥Ã¥¯
+	#æ–°è¦ç™»éŒ²ãƒã‚§ãƒƒã‚¯
 	function checkSignUp($id,$pass,$name){
 		if(strlen($id) == 0){
-			return "ID¤¬ÆşÎÏ¤µ¤ì¤Æ¤¤¤Ş¤»¤ó";
+			return "IDãŒå…¥åŠ›ã•ã‚Œã¦ã„ã¾ã›ã‚“";
 		} else if(strlen($pass) == 0){
-			return "¥Ñ¥¹¥ï¡¼¥É¤¬ÆşÎÏ¤µ¤ì¤Æ¤¤¤Ş¤»¤ó";
+			return "ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒå…¥åŠ›ã•ã‚Œã¦ã„ã¾ã›ã‚“";
 		} else if(strlen($name) == 0){
-			return "Ì¾Á°¤¬ÆşÎÏ¤µ¤ì¤Æ¤¤¤Ş¤»¤ó";
+			return "åå‰ãŒå…¥åŠ›ã•ã‚Œã¦ã„ã¾ã›ã‚“";
 		} else if(strlen($id) < 4) {
-			return "ID¤¬Ã»¤¹¤®¤Ş¤¹";
+			return "IDãŒçŸ­ã™ãã¾ã™";
 		} else if(strlen($id) > 16) {
-			return "ID¤¬Ä¹¤¹¤®¤Ş¤¹";
+			return "IDãŒé•·ã™ãã¾ã™";
 		} else if(strlen($pass) < 4) {
-			return "¥Ñ¥¹¥ï¡¼¥É¤¬Ã»¤¹¤®¤Ş¤¹";
+			return "ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒçŸ­ã™ãã¾ã™";
 		} else if(strlen($pass) > 16) {
-			return "¥Ñ¥¹¥ï¡¼¥É¤¬Ä¹¤¹¤®¤Ş¤¹";
+			return "ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒé•·ã™ãã¾ã™";
 		} else if(strlen($name) > 16){
-			return "Ì¾Á°¤¬Ä¹¤¹¤®¤Ş¤¹";
+			return "åå‰ãŒé•·ã™ãã¾ã™";
 		} else if(!preg_match('/^[0-9a-zA-Z]+$/',$id)) {
-			return "ID¤Ë»ÈÍÑ¤Ç¤­¤ë¤Î¤ÏÈ¾³Ñ±Ñ¿ô¤Î¤ß¤Ç¤¹";
+			return "IDã«ä½¿ç”¨ã§ãã‚‹ã®ã¯åŠè§’è‹±æ•°ã®ã¿ã§ã™";
 		} else if(!preg_match('/^[0-9a-zA-Z]+$/',$pass)) {
-			return "¥Ñ¥¹¥ï¡¼¥É¤Ë»ÈÍÑ¤Ç¤­¤ë¤Î¤ÏÈ¾³Ñ±Ñ¿ô¤Î¤ß¤Ç¤¹";
+			return "ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã«ä½¿ç”¨ã§ãã‚‹ã®ã¯åŠè§’è‹±æ•°ã®ã¿ã§ã™";
 		}
 		
 		foreach($this->userdata as $u){
 			if($name == $u->name){
-				return "¤½¤ÎÌ¾Á°¤Ï´û¤Ë»È¤ï¤ì¤Æ¤¤¤Ş¤¹";
+				return "ãã®åå‰ã¯æ—¢ã«ä½¿ã‚ã‚Œã¦ã„ã¾ã™";
 			} else if($id == $u->id) {
-				return "¤½¤ÎID¤Ï´û¤Ë»È¤ï¤ì¤Æ¤¤¤Ş¤¹";
+				return "ãã®IDã¯æ—¢ã«ä½¿ã‚ã‚Œã¦ã„ã¾ã™";
 			}
 		}
 		return "ok";
 		
 	}
 	
-	#¥í¥°¥¤¥ó¥Á¥§¥Ã¥¯
+	#ãƒ­ã‚°ã‚¤ãƒ³ãƒã‚§ãƒƒã‚¯
 	function checkLogin($id, $pass){
 
 		if(strlen($_POST["id"]) == 0){
-			return "ID¤¬ÆşÎÏ¤µ¤ì¤Æ¤¤¤Ş¤»¤ó";
+			return "IDãŒå…¥åŠ›ã•ã‚Œã¦ã„ã¾ã›ã‚“";
 		} else if(strlen($_POST["pass"]) == 0){
-			return "¥Ñ¥¹¥ï¡¼¥É¤¬ÆşÎÏ¤µ¤ì¤Æ¤¤¤Ş¤»¤ó";
+			return "ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒå…¥åŠ›ã•ã‚Œã¦ã„ã¾ã›ã‚“";
 		}
 		
 		foreach($this->userdata as $data){
@@ -497,14 +497,14 @@ class Game{
 				if($data->pass == $pass){
 					return "ok";
 				} else {
-					return "¥Ñ¥¹¥ï¡¼¥É¤¬´Ö°ã¤Ã¤Æ¤¤¤Ş¤¹";
+					return "ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒé–“é•ã£ã¦ã„ã¾ã™";
 				}
 			}
 		}
-		return "¤½¤ÎID¤ÏÂ¸ºß¤·¤Ş¤»¤ó";
+		return "ãã®IDã¯å­˜åœ¨ã—ã¾ã›ã‚“";
 	}
 
-	#¥×¥ì¥¤¥ä¡¼¤Î¿·µ¬ÅĞÏ¿
+	#ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ–°è¦ç™»éŒ²
 	function makeNewPlayer($id,$pass,$name) {
 	
 		if(get_magic_quotes_gpc()) {
@@ -534,7 +534,7 @@ class Game{
 	
 	}
 
-	#¥Ú¡¼¥¸Á«°Ü»ş¡¢Á°¤Î¥Ú¡¼¥¸¤«¤éÁ÷¤é¤ì¤¿ÃÍ¡Ê¥é¥¸¥ª¥Ü¥¿¥ó¡Ë¤ò¼õ¤±¼è¤Ã¤Æ½èÍı¤¹¤ë
+	#ãƒšãƒ¼ã‚¸é·ç§»æ™‚ã€å‰ã®ãƒšãƒ¼ã‚¸ã‹ã‚‰é€ã‚‰ã‚ŒãŸå€¤ï¼ˆãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³ï¼‰ã‚’å—ã‘å–ã£ã¦å‡¦ç†ã™ã‚‹
 	function setAction($mode){
 		$mes = array("");
 		$saveflag = FALSE;
@@ -545,7 +545,7 @@ class Game{
 		} else if($mode == "end") {
 			$temp = $mode;
 		} else if($mode == "back") {
-			#²¿¤â¤·¤Ê¤¤
+			#ä½•ã‚‚ã—ãªã„
 		} else if($mode == "perspective") {
 			$this->player->pagemode = "perspective";
 		} else {
@@ -617,7 +617,7 @@ class Game{
 		return $mes[0];
 	}
 	
-	#¥İ¡¼¥·¥ç¥ó»ÈÍÑ»ş¤Î½èÍı¡ÊsetAction¤«¤éÈô¤Ö¡Ë
+	#ãƒãƒ¼ã‚·ãƒ§ãƒ³ä½¿ç”¨æ™‚ã®å‡¦ç†ï¼ˆsetActionã‹ã‚‰é£›ã¶ï¼‰
 	function setUsingPotion($pot,$potdata){
 		if($pot) $mes = $this->player->usePotion($_POST["potno"],$this->potdata);
 		else $mes = array("");
@@ -625,7 +625,7 @@ class Game{
 		return $mes;
 	}
 	
-	#Â¨»ş¸ú²Ì¥İ¡¼¥·¥ç¥ó¤Î½èÍı
+	#å³æ™‚åŠ¹æœãƒãƒ¼ã‚·ãƒ§ãƒ³ã®å‡¦ç†
 	function usePotionInTurn($str){
 		preg_match('/use potion\(([0-9]+)\)/',$str,$match);
 		switch($match[1]){
@@ -639,7 +639,7 @@ class Game{
 		return $str;
 	}
 	
-	#¤½¤Î¥¿¡¼¥ó¤Î¹ÔÆ°¤¬³ÎÄê¤·¤¿¤È¤­¤Ë¥·¥¹¥Æ¥à¥Ç¡¼¥¿¤Ë½ñ¤­¤³¤à
+	#ãã®ã‚¿ãƒ¼ãƒ³ã®è¡Œå‹•ãŒç¢ºå®šã—ãŸã¨ãã«ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã«æ›¸ãã“ã‚€
 	function saveAction(){
 		$tempstr = "";
 		for($i=0;$i<USERNUM;$i++){
@@ -665,9 +665,9 @@ class Game{
 		fclose($fp);
 	}
 	
-	#user.log¤Ø¤Î½ñ¤­¹ş¤ß
+	#user.logã¸ã®æ›¸ãè¾¼ã¿
 	function savePlayerData(){
-		#TODO ¥Õ¥¡¥¤¥ë¥í¥Ã¥¯¤ò¤Á¤ã¤ó¤È¤¹¤ë
+		#TODO ãƒ•ã‚¡ã‚¤ãƒ«ãƒ­ãƒƒã‚¯ã‚’ã¡ã‚ƒã‚“ã¨ã™ã‚‹
 		$savedata = array();
 		foreach($this->userdata as $data) {
 			if(isset($this->player->id) && $data->id == $this->player->id){
@@ -710,7 +710,7 @@ class Game{
 		fclose($fp);
 	}
 
-	#¤½¤ÎÆü¤Î¥í¥°¤ÈÁ´ÂÎ¤Î¥í¥°¤òÄÉ²Ã½ñ¤­¹ş¤ß
+	#ãã®æ—¥ã®ãƒ­ã‚°ã¨å…¨ä½“ã®ãƒ­ã‚°ã‚’è¿½åŠ æ›¸ãè¾¼ã¿
 	function addLog($log){
 		if($log == "") return;
 		$fp = fopen("gamelog.log", "a");
@@ -721,7 +721,7 @@ class Game{
 		fclose($fp);
 	}
 
-	#¥İ¡¼¥·¥ç¥ó¤ò»ı¤Ã¤Æ¤¤¤ë¤«¤É¤¦¤«¡Ê¸Ä¿ô¤Ï´Ø·¸¤Ê¤¤¡Ë
+	#ãƒãƒ¼ã‚·ãƒ§ãƒ³ã‚’æŒã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ï¼ˆå€‹æ•°ã¯é–¢ä¿‚ãªã„ï¼‰
 	function hasPotion(){
 		$potnum = 0;
 		for($i=0;$i<POTION_NO;$i++){
@@ -734,7 +734,7 @@ class Game{
 		return FALSE;
 	}
 	
-	#ID¤ò¼õ¤±¼è¤Ã¤Æ¡¢¤½¤ÎÌ¾Á°¤òÊÖ¤¹
+	#IDã‚’å—ã‘å–ã£ã¦ã€ãã®åå‰ã‚’è¿”ã™
 	function getUserName($id){
 		foreach($this->userdata as $u){
 			if($u->id == $id){
@@ -744,7 +744,7 @@ class Game{
 		return FALSE;
 	}
 	
-	#Ä¾´¶¤òÆÀ¤ë
+	#ç›´æ„Ÿã‚’å¾—ã‚‹
 	function getChokkan(){
 		do{
 			$rand1 = mt_rand(0,4);
@@ -759,20 +759,20 @@ class Game{
 		}
 	}
 	
-	#É÷¤Î¤¦¤ï¤µ¤Î¥Æ¥­¥¹¥È¤òºîÀ®
+	#é¢¨ã®ã†ã‚ã•ã®ãƒ†ã‚­ã‚¹ãƒˆã‚’ä½œæˆ
 	function getUwasa(){
 		$rand = mt_rand(0,2);
 		
 		$pl = $this->userdata[mt_rand(0,USERNUM-1)];
-		#¥ì¥·¥Ô¤Î¿ô
+		#ãƒ¬ã‚·ãƒ”ã®æ•°
 		if($rand == 0){
 			$tablenum = $pl->getTableNum();
 			return "uwasa>".$pl->id.".table(".$tablenum.")";
-		#½ê»ı¶â
+		#æ‰€æŒé‡‘
 		} else if($rand == 1) { 
 			$gold = $pl->gold;
 			return "uwasa>".$pl->id.".gold(".$gold.")";
-		#¥İ¡¼¥·¥ç¥ó¤Î»ÈÍÑ¾õ¶·
+		#ãƒãƒ¼ã‚·ãƒ§ãƒ³ã®ä½¿ç”¨çŠ¶æ³
 		} else if($rand == 2) {
 			$log = array();
 			$upot = array();

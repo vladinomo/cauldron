@@ -9,7 +9,7 @@ $game->player->turnlog = $game->readGameLog($game->player->id);
 if(preg_match('/^k.*/',$mes)) {
 	$mes = "<font color=\"blue\"><b>".trim($mes,"k")."</b></font><br>\n";
 } else if($mes != ""){
-	$mes = "<font color=\"red\"><b>ERROR¡¡".$mes."</b></font><br>\n";
+	$mes = "<font color=\"red\"><b>ERRORã€€".$mes."</b></font><br>\n";
 }
 
 print <<< DOC_END
@@ -40,7 +40,7 @@ print <<< DOC_END
 <form name="logoutbox" action="main.php" method="POST">
 <input type="hidden" name="mode" value="logout">
 </form>
-<a href="javascript:void(0)" onclick="document.logoutbox.submit();">¥í¥°¥¢¥¦¥È</a><br>
+<a href="javascript:void(0)" onclick="document.logoutbox.submit();">ãƒ­ã‚°ã‚¢ã‚¦ãƒˆ</a><br>
 <a href="./readme.txt" target="_">readme!</a><br><br>
 
 DOC_END;
@@ -48,7 +48,7 @@ DOC_END;
 if($game->player->pagemode == "perspective"){
 print("<form name=\"actbox\" action=\"main.php\" method=\"POST\">");
 print <<< DOC_END
-<input type="submit" value="Ìá¤ë"><br>
+<input type="submit" value="æˆ»ã‚‹"><br>
 <input type="hidden" name="mode" value="select">
 <input type="hidden" name="act" value="back">
 </form>
@@ -59,16 +59,16 @@ print "</body>\n</html>";
 exit;
 }
 
-print $game->day."ÆüÌÜ";
-if($game->rainy) print "(±«)";
-else print "(À²¤ì)";
-print "¡¡·îÎğ:".$game->moon;
-if($game->moon == 0) print "(¿··î)";
-else if($game->moon == 4) print "(Ëş·î)";
+print $game->day."æ—¥ç›®";
+if($game->rainy) print "(é›¨)";
+else print "(æ™´ã‚Œ)";
+print "ã€€æœˆé½¢:".$game->moon;
+if($game->moon == 0) print "(æ–°æœˆ)";
+else if($game->moon == 4) print "(æº€æœˆ)";
 print "<br>\n";
-print "½ê»ı¶â:".$game->player->gold."G<br>\n";
+print "æ‰€æŒé‡‘:".$game->player->gold."G<br>\n";
 $dp = $game->daily[0];
-print "ËÜÆü¤ÎÆüÂØ¤ï¤ê¡§".$game->potdata[$dp]["name"]."¤Î¥İ¡¼¥·¥ç¥ó(".$game->potdata[$dp]["buy"]."G)<br><br>\n";
+print "æœ¬æ—¥ã®æ—¥æ›¿ã‚ã‚Šï¼š".$game->potdata[$dp]["name"]."ã®ãƒãƒ¼ã‚·ãƒ§ãƒ³(".$game->potdata[$dp]["buy"]."G)<br><br>\n";
 if($mes != "") print $mes."<br>\n";
 
 if(preg_match('/end([0-9&]+)/', $game->status, $match)){
@@ -78,9 +78,9 @@ if(preg_match('/end([0-9&]+)/', $game->status, $match)){
 		if($w == $game->player->no) $winflag = TRUE;
 	}
 	if($winflag){
-		print("<h2>¤¢¤Ê¤¿¤Ï¡Ø¥¨¥ê¥¯¥µ¡¼¡Ù¤ÎÈ¯ÌÀ¼Ô¤È¤·¤ÆÇ§¤á¤é¤ì¤Ş¤·¤¿¡ª</h2>\n");
+		print("<h2>ã‚ãªãŸã¯ã€ã‚¨ãƒªã‚¯ã‚µãƒ¼ã€ã®ç™ºæ˜è€…ã¨ã—ã¦èªã‚ã‚‰ã‚Œã¾ã—ãŸï¼</h2>\n");
 	} else {
-		print("<h2>".$game->userdata[$match[1]]->name."¤¬¡Ø¥¨¥ê¥¯¥µ¡¼¡Ù¤ÎÄ´¹ç¤ËÀ®¸ù¤·¤Ş¤·¤¿¡ª</h2>\n");
+		print("<h2>".$game->userdata[$match[1]]->name."ãŒã€ã‚¨ãƒªã‚¯ã‚µãƒ¼ã€ã®èª¿åˆã«æˆåŠŸã—ã¾ã—ãŸï¼</h2>\n");
 	}
 } else {
 
@@ -109,13 +109,13 @@ switch($game->player->action){
 }
 }
 
-	print("¥¿¡¼¥ó¤ò½ªÎ»¤·¤¿¥×¥ì¥¤¥ä¡¼¡§");
+	print("ã‚¿ãƒ¼ãƒ³ã‚’çµ‚äº†ã—ãŸãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ï¼š");
 	foreach($game->userdata as $u){
-		if($u->action == "end") print $u->name."¡¡";
+		if($u->action == "end") print $u->name."ã€€";
 	}
-	print("<br>\n¥¿¡¼¥ó¤ò½ªÎ»¤·¤Æ¤¤¤Ê¤¤¥×¥ì¥¤¥ä¡¼¡§");
+	print("<br>\nã‚¿ãƒ¼ãƒ³ã‚’çµ‚äº†ã—ã¦ã„ãªã„ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ï¼š");
 	foreach($game->userdata as $u){
-		if($u->action != "end") print $u->name."¡¡";
+		if($u->action != "end") print $u->name."ã€€";
 	}
 }
 
@@ -123,8 +123,8 @@ print <<< DOC_END
 <br><br>
 <table border=1>
 <tr>
-<td><b>ÁÇºà</b></td>
-<td><b>¥İ¡¼¥·¥ç¥ó</b></td>
+<td><b>ç´ æ</b></td>
+<td><b>ãƒãƒ¼ã‚·ãƒ§ãƒ³</b></td>
 </tr><tr>
 <td valign="top">
 
@@ -141,7 +141,7 @@ DOC_END;
 printPotionTable();
 print <<< DOC_END
 <table>
-<tr><td>º£Æü</td><td>ºòÆü</td></tr>
+<tr><td>ä»Šæ—¥</td><td>æ˜¨æ—¥</td></tr>
 <tr>
 <td valign="top">
 DOC_END;
@@ -165,17 +165,17 @@ function printActNone(){
 global $game;
 
 print("<form name=\"actbox\" action=\"main.php\" method=\"POST\">");
-if(!$game->checkUgly()) print "<input type=\"radio\" name=\"act\" value=\"shop\">³¹¤Ø¹Ô¤¯<br>";
-else print "<input type=\"radio\" name=\"act\" disabled>(½¹°­¤Î¼ö¤¤¤Î¤»¤¤¤Ç³¹¤Ë¹Ô¤±¤Ş¤»¤ó)<br>";
-print "<input type=\"radio\" name=\"act\" value=\"compound\">Ä´¹ç<br>";
-if(!$game->rainy) print "<input type=\"radio\" name=\"act\" value=\"gather\">ÁÇºà½¸¤á¤Ë¹Ô¤¯<br>";
-else print "<input type=\"radio\" name=\"act\" disabled>(±«¤ÎÆü¤ÏÁÇºà½¸¤á¤Ï¤Ç¤­¤Ş¤»¤ó)<br>";
+if(!$game->checkUgly()) print "<input type=\"radio\" name=\"act\" value=\"shop\">è¡—ã¸è¡Œã<br>";
+else print "<input type=\"radio\" name=\"act\" disabled>(é†œæ‚ªã®å‘ªã„ã®ã›ã„ã§è¡—ã«è¡Œã‘ã¾ã›ã‚“)<br>";
+print "<input type=\"radio\" name=\"act\" value=\"compound\">èª¿åˆ<br>";
+if(!$game->rainy) print "<input type=\"radio\" name=\"act\" value=\"gather\">ç´ æé›†ã‚ã«è¡Œã<br>";
+else print "<input type=\"radio\" name=\"act\" disabled>(é›¨ã®æ—¥ã¯ç´ æé›†ã‚ã¯ã§ãã¾ã›ã‚“)<br>";
 
 printOption();
 
 print <<< DOC_END
-<input type="radio" name="act" value="end">¥¿¡¼¥ó½ªÎ»<br>
-<input type="submit" value="¼Â¹Ô">
+<input type="radio" name="act" value="end">ã‚¿ãƒ¼ãƒ³çµ‚äº†<br>
+<input type="submit" value="å®Ÿè¡Œ">
 <input type="hidden" name="mode" value="select">
 </form>
 DOC_END;
@@ -186,14 +186,14 @@ function printActGather(){
 
 global $game;
 
-print("ÁÇºà½¸¤á¤Ë½Ğ¤Æ¤¤¤Ş¤¹...<br><br>");
+print("ç´ æé›†ã‚ã«å‡ºã¦ã„ã¾ã™...<br><br>");
 print("<form name=\"actbox\" action=\"main.php\" method=\"POST\">");
 
 printOption();
 
 print <<< DOC_END
-<input type="radio" name="act" value="end">¥¿¡¼¥ó½ªÎ»<br>
-<input type="submit" value="¼Â¹Ô">
+<input type="radio" name="act" value="end">ã‚¿ãƒ¼ãƒ³çµ‚äº†<br>
+<input type="submit" value="å®Ÿè¡Œ">
 <input type="hidden" name="mode" value="select">
 </form>
 DOC_END;
@@ -206,9 +206,9 @@ global $game;
 
 print <<< DOC_END
 <form name="actbox" action="main.php" method="POST">
-<input type="radio" name="act" value="buy">Çã¤¤Êª¤ò¤¹¤ë<br>
+<input type="radio" name="act" value="buy">è²·ã„ç‰©ã‚’ã™ã‚‹<br>
 <select id="buybox" name="buybox">
-<option value="none">--ÁªÂò--
+<option value="none">--é¸æŠ--
 
 DOC_END;
 
@@ -221,26 +221,26 @@ for($i=0;$i<4;$i++){
 }
 for($i=0;$i<2;$i++){
 	$dp[$i] = $game->daily[$i];
-	print "<option value=".$dp[$i].">".$game->potdata[$dp[$i]]["name"]."¤Î¥İ¡¼¥·¥ç¥ó(".$game->potdata[$dp[$i]][$buy]."G)\n";
+	print "<option value=".$dp[$i].">".$game->potdata[$dp[$i]]["name"]."ã®ãƒãƒ¼ã‚·ãƒ§ãƒ³(".$game->potdata[$dp[$i]][$buy]."G)\n";
 }
 
 for($i=0;$i<2;$i++){
 	if($game->player->caul[$i] < MAX_CAULDRON){
 		if($game->player->caul[$i] == 0){
-			print "<option value=\"10".$i."\">¥³¥ó¥í¤ò³ÈÄ¥¤¹¤ë(".PRICE_CAULDRON1."G)\n";
+			print "<option value=\"10".$i."\">ã‚³ãƒ³ãƒ­ã‚’æ‹¡å¼µã™ã‚‹(".PRICE_CAULDRON1."G)\n";
 		} else if($game->player->caul[$i] == 1) {
-			print "<option value=\"10".$i."\">Æé".($i+1)."¤òÂç¤­¤¯¤¹¤ë(".PRICE_CAULDRON2."G)\n";
+			print "<option value=\"10".$i."\">é‹".($i+1)."ã‚’å¤§ããã™ã‚‹(".PRICE_CAULDRON2."G)\n";
 		} else {
-			print "<option value=\"10".$i."\">Æé".($i+1)."¤òÂç¤­¤¯¤¹¤ë(".PRICE_CAULDRON3."G)\n";
+			print "<option value=\"10".$i."\">é‹".($i+1)."ã‚’å¤§ããã™ã‚‹(".PRICE_CAULDRON3."G)\n";
 		}
 	}
 }
 print <<< DOC_END
 </select>
-<input type="text" name="buyint" size="2" value="1">¸Ä<br>
-<input type="radio" name="act" value="sell">»ı¤ÁÊª¤òÇä¤ë<br>
+<input type="text" name="buyint" size="2" value="1">å€‹<br>
+<input type="radio" name="act" value="sell">æŒã¡ç‰©ã‚’å£²ã‚‹<br>
 <select id="sellbox" name="sellbox">
-<option value="none">--ÁªÂò--
+<option value="none">--é¸æŠ--
 
 DOC_END;
 
@@ -253,23 +253,23 @@ for($i=0;$i<MATERIAL_NO;$i++){
 for($i=0;$i<POTION_NO;$i++){
 	if($game->player->potion[$i] > 0){
 		if($game->potdata[$i][$sell] == 0) continue;
-		print("<option value=".$i.">".$game->potdata[$i]["name"]."¤Î¥İ¡¼¥·¥ç¥ó(".$game->potdata[$i][$sell]."G)\n");
+		print("<option value=".$i.">".$game->potdata[$i]["name"]."ã®ãƒãƒ¼ã‚·ãƒ§ãƒ³(".$game->potdata[$i][$sell]."G)\n");
 	}
 }
 
 print <<< DOC_END
 </select>
-<input type="text" name="sellint" size="2" value="1">¸Ä<br>
-<input type="radio" name="act" value="order">ÁÇºà½¸¤á¤ò°ÍÍê<br>
-°ÍÍêÎÁ=¼ı³ÏÎÌ*5G ¼ı³ÏÎÌ:
+<input type="text" name="sellint" size="2" value="1">å€‹<br>
+<input type="radio" name="act" value="order">ç´ æé›†ã‚ã‚’ä¾é ¼<br>
+ä¾é ¼æ–™=åç©«é‡*5G åç©«é‡:
 <input type="text" name="order" size="2" value="1"><br>
 DOC_END;
 
 printOption();
 
 print <<<DOC_END
-<input type="radio" name="act" value="end">¥¿¡¼¥ó½ªÎ»<br>
-<input type="submit" value="¼Â¹Ô">
+<input type="radio" name="act" value="end">ã‚¿ãƒ¼ãƒ³çµ‚äº†<br>
+<input type="submit" value="å®Ÿè¡Œ">
 <input type="hidden" name="mode" value="select">
 </form>
 
@@ -287,12 +287,12 @@ print "<form name=\"actbox\" action=\"main.php\" method=\"POST\">\n";
 if($game->player->checkCauldronNum()){
 
 if($game->player->pagemode == "mixpotion"){
-	$type = array("²Ğ","¿å","ÅÚ","É÷");
+	$type = array("ç«","æ°´","åœŸ","é¢¨");
 	$value = array("1","2","3");
 	$potnum = 0;
 	
-	print "<select id=\"selectcaul\" name=\"selectc\">\n<option value=\"0\">Æé1";
-	if($game->player->caul[1] > 0) print("<option value=\"1\">Æé2");
+	print "<select id=\"selectcaul\" name=\"selectc\">\n<option value=\"0\">é‹1";
+	if($game->player->caul[1] > 0) print("<option value=\"1\">é‹2");
 	print("</select>\n<br>\n");
 
 	for($i=0;$i<POTION_NO;$i++){
@@ -301,25 +301,25 @@ if($game->player->pagemode == "mixpotion"){
 			$potnum++;
 		}
 	}
-	if($potnum == 0) print("<input type=\"radio\" name=\"act\" disabled>¥İ¡¼¥·¥ç¥ó¤¬¤Ò¤È¤Ä¤â¤¢¤ê¤Ş¤»¤ó<br>\n");
-	else print("<input type=\"radio\" name=\"act\" value=\"comp_pot\" checked>¤³¤ì¤é¤Î¥İ¡¼¥·¥ç¥ó¤ÇÄ´¹ç¤¹¤ë<br>\n");
-	print("<input type=\"radio\" name=\"act\" value=\"back\">Ìá¤ë<br>");
+	if($potnum == 0) print("<input type=\"radio\" name=\"act\" disabled>ãƒãƒ¼ã‚·ãƒ§ãƒ³ãŒã²ã¨ã¤ã‚‚ã‚ã‚Šã¾ã›ã‚“<br>\n");
+	else print("<input type=\"radio\" name=\"act\" value=\"comp_pot\" checked>ã“ã‚Œã‚‰ã®ãƒãƒ¼ã‚·ãƒ§ãƒ³ã§èª¿åˆã™ã‚‹<br>\n");
+	print("<input type=\"radio\" name=\"act\" value=\"back\">æˆ»ã‚‹<br>");
 } else {
 print <<<DOC_END
-<input type="radio" name="act" value="comp_mat" checked>ºàÎÁ¤«¤éÄ´¹ç¤¹¤ë<br>
+<input type="radio" name="act" value="comp_mat" checked>ææ–™ã‹ã‚‰èª¿åˆã™ã‚‹<br>
 <select id="selectcaul" name="selectc">
-<option value="0">Æé1
+<option value="0">é‹1
 
 DOC_END;
 
 if($game->player->caul[1] > 0) {
-	print("<option value=\"1\">Æé2");
+	print("<option value=\"1\">é‹2");
 }
 
 print("</select>\n<br>\n");
 print <<<DOC_END
 <select id="mat1" name="mat1">
-<option value="none">ÁÇºà¤òÁªÂò¤·¤Æ¤¯¤À¤µ¤¤
+<option value="none">ç´ æã‚’é¸æŠã—ã¦ãã ã•ã„
 
 DOC_END;
 	
@@ -328,7 +328,7 @@ DOC_END;
 			print("<option value=".$i.">".$game->matdata[$i]["name"]."\n");
 		}
 	}
-	print("</select>\n<br><select id=\"mat2\" name=\"mat2\">\n<option value=\"none\">ÁÇºà¤òÁªÂò¤·¤Æ¤¯¤À¤µ¤¤\n");
+	print("</select>\n<br><select id=\"mat2\" name=\"mat2\">\n<option value=\"none\">ç´ æã‚’é¸æŠã—ã¦ãã ã•ã„\n");
 
 	for($i=0;$i<MATERIAL_NO;$i++){
 		if($i != MIMIZU && $mats[$i] > 0){
@@ -337,27 +337,27 @@ DOC_END;
 	}
 	if($mats[5] > 0){
 		for($i=0;$i<5;$i++){
-			print("<option value=1".$i.">".$game->matdata[5]["name"]."(".$game->matdata[$i]["name"]."¤È¤·¤Æ)\n");
+			print("<option value=1".$i.">".$game->matdata[5]["name"]."(".$game->matdata[$i]["name"]."ã¨ã—ã¦)\n");
 		}
 	}
 	print("</select>\n");
 
 	if($game->player->caul[0] == 3 || $game->player->caul[1] == 3){
-		print "<input type=\"checkbox\" name=\"double\">ÆóÇÜ¤ÎÊ¬ÎÌ¤ÇÄ´¹ç<br>\n";
+		print "<input type=\"checkbox\" name=\"double\">äºŒå€ã®åˆ†é‡ã§èª¿åˆ<br>\n";
 	} else {print "<br>\n";}
 
 	if($game->hasPotion())
-	print("\n\n<input type=\"radio\" name=\"act\" value=\"mixpotion\">¥İ¡¼¥·¥ç¥óÆ±»Î¤ÎÄ´¹ç<br>");
+	print("\n\n<input type=\"radio\" name=\"act\" value=\"mixpotion\">ãƒãƒ¼ã‚·ãƒ§ãƒ³åŒå£«ã®èª¿åˆ<br>");
 }
 } else {
-	print ("<input type=\"radio\" name=\"act\" disabled>Æé¤ÏÁ´¤Æ»ÈÍÑÃæ¤Ç¤¹<br>");
+	print ("<input type=\"radio\" name=\"act\" disabled>é‹ã¯å…¨ã¦ä½¿ç”¨ä¸­ã§ã™<br>");
 }
 
 printOption();
 
 print <<< DOC_END
-<input type="radio" name="act" value="end">¥¿¡¼¥ó½ªÎ»<br>
-<input type="submit" value="¼Â¹Ô">
+<input type="radio" name="act" value="end">ã‚¿ãƒ¼ãƒ³çµ‚äº†<br>
+<input type="submit" value="å®Ÿè¡Œ">
 <input type="hidden" name="mode" value="select">
 </form>
 DOC_END;
@@ -372,7 +372,7 @@ function printActPotion() {
 global $game;
 
 print "<form name=\"actbox\" action=\"main.php\" method=\"POST\">\n";
-print "<select name=\"potno\">\n<option value=\"none\">--ÁªÂò--\n";
+print "<select name=\"potno\">\n<option value=\"none\">--é¸æŠ--\n";
 
 for($i=0;$i<POTION_NO;$i++){
 	if($game->player->potion[$i] > 0) {
@@ -382,9 +382,9 @@ for($i=0;$i<POTION_NO;$i++){
 
 print <<<DOC_END
 </select><br>
-<input type="radio" name="act" value="potion" checked>»ÈÍÑ¤¹¤ë<br>
-<input type="radio" name="act" value="back">Ìá¤ë<br>
-<input type="submit" value="¼Â¹Ô">
+<input type="radio" name="act" value="potion" checked>ä½¿ç”¨ã™ã‚‹<br>
+<input type="radio" name="act" value="back">æˆ»ã‚‹<br>
+<input type="submit" value="å®Ÿè¡Œ">
 <input type="hidden" name="mode" value="select">
 </form>
 
@@ -398,16 +398,16 @@ global $game;
 
 switch($game->player->selectact){
 	case "gather":
-		$action = "º£Æü¤ÏÁÇºà½¸¤á¤ò¹Ô¤¤¤Ş¤·¤¿¡£<br>\n";
+		$action = "ä»Šæ—¥ã¯ç´ æé›†ã‚ã‚’è¡Œã„ã¾ã—ãŸã€‚<br>\n";
 		break;
 	case "shop":
-		$action = "º£Æü¤Ï³¹¤Ë½Ğ³İ¤±¤Ş¤·¤¿¡£<br>\n";
+		$action = "ä»Šæ—¥ã¯è¡—ã«å‡ºæ›ã‘ã¾ã—ãŸã€‚<br>\n";
 		break;
 	case "compound":
-		$action = "º£Æü¤ÏÄ´¹ç¤ò¹Ô¤¤¤Ş¤·¤¿¡£<br>\n";
+		$action = "ä»Šæ—¥ã¯èª¿åˆã‚’è¡Œã„ã¾ã—ãŸã€‚<br>\n";
 		break;
 	case "none":
-		$action = "º£Æü¤Ï²¿¤â¤·¤Ş¤»¤ó¤Ç¤·¤¿¡£<br>\n";
+		$action = "ä»Šæ—¥ã¯ä½•ã‚‚ã—ã¾ã›ã‚“ã§ã—ãŸã€‚<br>\n";
 		break;	
 	default:
 		$action = "error printActEnd (".$game->player["selectact"].")<br>\n";
@@ -417,24 +417,24 @@ switch($game->player->selectact){
 
 print($action."<br>\n");
 print <<<DOC_END
-¡Ê´û¤Ë¥¿¡¼¥ó¤ò½ªÎ»¤·¤Æ¤¤¤Ş¤¹¡Ë<br><br>
+ï¼ˆæ—¢ã«ã‚¿ãƒ¼ãƒ³ã‚’çµ‚äº†ã—ã¦ã„ã¾ã™ï¼‰<br><br>
 <form name="actbox" action="main.php" method="POST">
-<input type="submit" value="¹¹¿·">
+<input type="submit" value="æ›´æ–°">
 <input type="hidden" name="mode" value="reload">
 </form>
 DOC_END;
 }
 
-#Æé¤ÎÉ½¼¨
+#é‹ã®è¡¨ç¤º
 function printCauldron(){
 
 global $game;
 
-$size = array("","¾®","Âç","ÆÃÂç");
+$size = array("","å°","å¤§","ç‰¹å¤§");
 print("<table border=1>\n<tr>\n");
-print("<td><b>Æé1(".$size[$game->player->caul[0]].")</b></td>\n");
+print("<td><b>é‹1(".$size[$game->player->caul[0]].")</b></td>\n");
 if($game->player->caul[1] > 0){
-	print("<td><b>Æé2(".$size[$game->player->caul[1]].")</b></td>\n");
+	print("<td><b>é‹2(".$size[$game->player->caul[1]].")</b></td>\n");
 }
 print "</tr>\n<tr>\n";
 $i=0;
@@ -449,7 +449,7 @@ foreach($game->player->turnlog as $l){
 			$str[$match[1]] = $str[$match[1]].$game->matdata[$match[4]]["name"]."\n";
 		}
 		if($match[2] == "1"){
-			$str[$match[1]] = $str[$match[1]]."<br>(ÆóÇÜ)\n";
+			$str[$match[1]] = $str[$match[1]]."<br>(äºŒå€)\n";
 		}
 		$str[$match[1]] = $str[$match[1]]."</td>\n";
 		$i++;
@@ -471,7 +471,7 @@ foreach($game->player->turnlog as $l){
 
 
 for($i=0;$i<2;$i++){
-	if($str[$i] == "" && $game->player->caul[$i] > 0) print("<td>(¶õ¤­)</td>\n");
+	if($str[$i] == "" && $game->player->caul[$i] > 0) print("<td>(ç©ºã)</td>\n");
 	else if($game->player->caul[$i] <= 0) {}
 	else print($str[$i]);
 }
@@ -479,15 +479,15 @@ print("</tr>\n</table>\n");
 
 }
 
-#Ä´¹çÉ½¤ÎÉ½¼¨
+#èª¿åˆè¡¨ã®è¡¨ç¤º
 function printPotionTable(){
 	
 global $game;
 
-$type = array("²Ğ","¿å","ÅÚ","É÷");
+$type = array("ç«","æ°´","åœŸ","é¢¨");
 $value = array("1","2","3");
 
-print("\n<br>\n<b>Ä´¹çÉ½</b>\n<br>\n<table border=2>\n<tr>\n<td></td>\n");
+print("\n<br>\n<b>èª¿åˆè¡¨</b>\n<br>\n<table border=2>\n<tr>\n<td></td>\n");
 for($i=0;$i<5;$i++){
 	print("<td>".$game->matdata[$i]["name"]."</td>\n");
 }
@@ -496,11 +496,11 @@ for($i=0;$i<5;$i++){
 	print("<tr>\n<td>".$game->matdata[$i]["name"]."</td>\n");
 	for($j=0;$j<5;$j++){
 		if(!isset($game->player->ptable[$i][$j])){
-			print("<td>¡©</td>\n");
+			print("<td>ï¼Ÿ</td>\n");
 			continue;
 		}
 		if($game->potiontable[$i][$j] == 100){
-			print("<td>¼ºÇÔ</td>\n");
+			print("<td>å¤±æ•—</td>\n");
 		} else {
 			$potno = $game->potiontable[$i][$j];
 			print("<td>".$game->potdata[$potno]["name"]."(".$type[$game->potdata[$potno]["type"]]."-".$value[$game->potdata[$potno]["value"]].")</td>\n");
@@ -512,7 +512,7 @@ print("</table>\n");
 
 }
 
-#ÁÇºà¤ÎÉ½¼¨
+#ç´ æã®è¡¨ç¤º
 function printMaterials(){
 
 	global $game;
@@ -524,12 +524,12 @@ function printMaterials(){
 	}
 }
 
-#¥İ¡¼¥·¥ç¥ó¤ÎÉ½¼¨
+#ãƒãƒ¼ã‚·ãƒ§ãƒ³ã®è¡¨ç¤º
 function printPotions(){
 
 	global $game;
 
-	$type = array("²Ğ","¿å","ÅÚ","É÷");
+	$type = array("ç«","æ°´","åœŸ","é¢¨");
 	$value = array("1","2","3");
 	
 	for($i=0;$i<POTION_NO;$i++){
@@ -539,7 +539,7 @@ function printPotions(){
 	}
 }
 
-#Æ©»ë¥â¡¼¥É
+#é€è¦–ãƒ¢ãƒ¼ãƒ‰
 function printPerspective(){
 
 global $game;
@@ -554,7 +554,7 @@ foreach($larray as $l) print $l."<br>\n";
 
 }
 
-#¥×¥ì¥¤¥ä¡¼¥í¥°
+#ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ­ã‚°
 function printPlayerLog($file){
 
 global $game;
@@ -573,13 +573,13 @@ foreach($printlog as $l){print $l."<br>\n";}
 
 }
 
-#¥í¥°¥¤¥ó²èÌÌ
+#ãƒ­ã‚°ã‚¤ãƒ³ç”»é¢
 function printLogin($err){
 
 global $game;
 
 if($err != ""){
-	$err = "<font color=\"red\"><b>ERROR¡¡".$err."</b></font><br>\n";
+	$err = "<font color=\"red\"><b>ERRORã€€".$err."</b></font><br>\n";
 }
 
 print <<<DOC_END
@@ -587,19 +587,19 @@ print <<<DOC_END
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
 <body>
-<a href="./readme.txt" target="_">¤Ï¤¸¤á¤Ë¤ªÆÉ¤ß¤¯¤À¤µ¤¤</a><br><br>
+<a href="./readme.txt" target="_">ã¯ã˜ã‚ã«ãŠèª­ã¿ãã ã•ã„</a><br><br>
 
 DOC_END;
 
 print $err."<br>\n";
 
 print <<<DOC_END
-¥í¥°¥¤¥ó
+ãƒ­ã‚°ã‚¤ãƒ³
 <form name="ibox" action="./main.php" method="POST">
 ID<input type="text" name="id"><br>
 pass<input type="password" name="pass"><br>
 <input type="hidden" name="mode" value="login">
-<input type="submit" value="¥í¥°¥¤¥ó">
+<input type="submit" value="ãƒ­ã‚°ã‚¤ãƒ³">
 </form><br>
 
 DOC_END;
@@ -607,25 +607,25 @@ DOC_END;
 if($game->status == "0") {
 
 print <<<DOC_END
-¿·µ¬ÅĞÏ¿
+æ–°è¦ç™»éŒ²
 <form name="sbox" action="./main.php" method="POST">
-ID(È¾³Ñ±Ñ¿ô4¡Á16Ê¸»ú)<br><input type="text" name="id"><br>
-Ì¾Á°(1¡Á16Ê¸»ú)<br><input type="text" name="name"><br>
-pass(È¾³Ñ±Ñ¿ô4¡Á16Ê¸»ú)<br><input type="password" name="pass"><br>
+ID(åŠè§’è‹±æ•°4ã€œ16æ–‡å­—)<br><input type="text" name="id"><br>
+åå‰(1ã€œ16æ–‡å­—)<br><input type="text" name="name"><br>
+pass(åŠè§’è‹±æ•°4ã€œ16æ–‡å­—)<br><input type="password" name="pass"><br>
 <input type="hidden" name="mode" value="signup">
-<input type="submit" value="ÅĞÏ¿">
+<input type="submit" value="ç™»éŒ²">
 </form>
 
 DOC_END;
 } else {
-print ("¢¨¸½ºß¡¢¿·µ¬ÅĞÏ¿¤Ï¼õ¤±ÉÕ¤±¤Æ¤¤¤Ş¤»¤ó\n");
+print ("â€»ç¾åœ¨ã€æ–°è¦ç™»éŒ²ã¯å—ã‘ä»˜ã‘ã¦ã„ã¾ã›ã‚“\n");
 }
 
 print "</body>\n</html>\n";
 return;
 }
 
-#´ÉÍı¼Ô¥í¥°¥¤¥ó²èÌÌ
+#ç®¡ç†è€…ãƒ­ã‚°ã‚¤ãƒ³ç”»é¢
 function printAdmin(){
 
 print <<<DOC_END
@@ -636,7 +636,7 @@ print <<<DOC_END
 <form name="adbox" action="./main.php" method="POST">
 <input type="password" name="pass"><br>
 <input type="hidden" name="mode" value="admin">
-<input type="submit" value="´ÉÍı¼Ô¥â¡¼¥É">
+<input type="submit" value="ç®¡ç†è€…ãƒ¢ãƒ¼ãƒ‰">
 </form><br>
 </body>
 </html>
@@ -644,7 +644,7 @@ print <<<DOC_END
 DOC_END;
 }
 
-#´ÉÍı¼Ô¥â¡¼¥É²èÌÌ
+#ç®¡ç†è€…ãƒ¢ãƒ¼ãƒ‰ç”»é¢
 function printAdminMode(){
 
 print <<<DOC_END
@@ -653,10 +653,10 @@ print <<<DOC_END
 <meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
 <body>
 <form name="adbox" action="./main.php" method="POST">
-¥¹¥¿¡¼¥È<input type="radio" name="act" value="start"><br>
-¥ê¥»¥Ã¥È<input type="radio" name="act" value="reset"><br>
+ã‚¹ã‚¿ãƒ¼ãƒˆ<input type="radio" name="act" value="start"><br>
+ãƒªã‚»ãƒƒãƒˆ<input type="radio" name="act" value="reset"><br>
 <input type="hidden" name="mode" value="adminmode">
-<input type="submit" value="¼Â¹Ô">
+<input type="submit" value="å®Ÿè¡Œ">
 </form><br>
 </body>
 </html>
@@ -664,7 +664,7 @@ print <<<DOC_END
 DOC_END;
 }
 
-#¥í¥°¤ò¤¢¤ì¤³¤ì¤¹¤ë
+#ãƒ­ã‚°ã‚’ã‚ã‚Œã“ã‚Œã™ã‚‹
 function exLog($logdata,$id,$st){
 
 global $game;
@@ -673,22 +673,22 @@ $rarray = array();
 $mats = array();
 foreach($logdata as $l){
 	$temp = "";
-	#¤¦¤ï¤µ¤Î¥í¥°
+	#ã†ã‚ã•ã®ãƒ­ã‚°
 	if(preg_match('/^uwasa>(.+)\.(.+)\(([0-9]+)\)$/', $l, $match)) {
 		switch($match[2]){
 			case "table":
-				$temp = "±½¡§".$game->getUserName($match[1])."¤ÎÄ´¹çÉ½¤Ï".$match[3]."²Õ½êËä¤Ş¤Ã¤Æ¤¤¤ë";
+				$temp = "å™‚ï¼š".$game->getUserName($match[1])."ã®èª¿åˆè¡¨ã¯".$match[3]."ç®‡æ‰€åŸ‹ã¾ã£ã¦ã„ã‚‹";
 				break;
 			case "gold":
-				$temp = "±½¡§".$game->getUserName($match[1])."¤Ï".$match[3]."G»ı¤Ã¤Æ¤¤¤ë";
+				$temp = "å™‚ï¼š".$game->getUserName($match[1])."ã¯".$match[3]."GæŒã£ã¦ã„ã‚‹";
 				#echo $temp;
 				break;
 			case "use":
-				$temp = "±½¡§".$game->getUserName($match[1])."¤ÏºòÆü¡¢".$game->potdata[$match[3]]["name"]."¤Î¥İ¡¼¥·¥ç¥ó¤ò»È¤Ã¤¿";
+				$temp = "å™‚ï¼š".$game->getUserName($match[1])."ã¯æ˜¨æ—¥ã€".$game->potdata[$match[3]]["name"]."ã®ãƒãƒ¼ã‚·ãƒ§ãƒ³ã‚’ä½¿ã£ãŸ";
 				break;
 		}
 		$action = "";
-	#¼«Ê¬°Ê³°¤Î¥í¥°
+	#è‡ªåˆ†ä»¥å¤–ã®ãƒ­ã‚°
 	} else if(!preg_match('/^'.$id.':(.+)/', $l, $match)){
 		if($l == "result\n"){
 			$temp = "-----";
@@ -696,26 +696,26 @@ foreach($logdata as $l){
 			$uname = $game->getUserName($match[1]);
 			switch($match[2]){
 				case "gather":
-					$temp = $uname."¤ÏÁÇºà½¸¤á¤Ë¹Ô¤Ã¤¿¤è¤¦¤Ç¤¹";
+					$temp = $uname."ã¯ç´ æé›†ã‚ã«è¡Œã£ãŸã‚ˆã†ã§ã™";
 					break;
 				case "shop":
-					$temp = $uname."¤Ï³¹¤Ø½Ğ³İ¤±¤¿¤è¤¦¤Ç¤¹";
+					$temp = $uname."ã¯è¡—ã¸å‡ºæ›ã‘ãŸã‚ˆã†ã§ã™";
 					break;
 				case "compound":
-					$temp = $uname."¤ÏÄ´¹ç¤ò¹Ô¤Ã¤¿¤è¤¦¤Ç¤¹";
+					$temp = $uname."ã¯èª¿åˆã‚’è¡Œã£ãŸã‚ˆã†ã§ã™";
 					break;
 			}
 		} else if(preg_match('/^(.+):get material\(([0-9])\)/', $l, $match) && $st != "today") {
 			$uname = $game->getUserName($match[1]);
 			if($match[2] == PRIMEVAL || $match[2] == BEAT || $match[2] == ELIXIR){
-				$temp = $uname."¤Ï".$game->matdata[$match[2]]["name"]."¤ÎÄ´¹ç¤ËÀ®¸ù¤·¤¿¤è¤¦¤Ç¤¹";
+				$temp = $uname."ã¯".$game->matdata[$match[2]]["name"]."ã®èª¿åˆã«æˆåŠŸã—ãŸã‚ˆã†ã§ã™";
 			}
 		} else if(preg_match('/^(.+):use potion\(([0-9]+)\)/', $l, $match) && $st != "today") {
-			if($match[2] == BUKIYOU || $match[2] == SYUAKU) $temp = "Ã¯¤«¤¬".$game->potdata[$match[2]]["name"]."¤Î¥İ¡¼¥·¥ç¥ó¤ò»ÈÍÑ¤·¤¿¤è¤¦¤Ç¤¹";
+			if($match[2] == BUKIYOU || $match[2] == SYUAKU) $temp = "èª°ã‹ãŒ".$game->potdata[$match[2]]["name"]."ã®ãƒãƒ¼ã‚·ãƒ§ãƒ³ã‚’ä½¿ç”¨ã—ãŸã‚ˆã†ã§ã™";
 		}
 		$action = "";
 		
-	#¼«Ê¬¤Î¥í¥°
+	#è‡ªåˆ†ã®ãƒ­ã‚°
 	} else {
 		$action = $match[1];
 	}
@@ -732,7 +732,7 @@ foreach($logdata as $l){
 if(sizeof($mats) > 0){
 	for($i=0;$i<MATERIAL_NO;$i++){
 		if(isset($mats[$i])){
-			array_push($rarray,$game->matdata[$i]["name"]."*".$mats[$i]."¤òÆş¼ê");
+			array_push($rarray,$game->matdata[$i]["name"]."*".$mats[$i]."ã‚’å…¥æ‰‹");
 		}
 	}
 }
@@ -740,7 +740,7 @@ if(sizeof($mats) > 0){
 return $rarray;
 }
 
-#¥í¥°ºîÀ®
+#ãƒ­ã‚°ä½œæˆ
 function makeLog($action,$st,$mats){
 
 global $game;
@@ -749,7 +749,7 @@ global $game;
 		if(isset($mats[$match[1]])) {$mats[$match[1]] += 1;}
 		else  {$mats[$match[1]] = 1;}
 	} else if(preg_match('/get potion\(([0-9]+),([0-9]+)\)/',$action,$match)){
-		$temp = $game->potdata[$match[1]]["name"]."¤Î¥İ¡¼¥·¥ç¥ó*".$match[2]."¤òÆş¼ê";
+		$temp = $game->potdata[$match[1]]["name"]."ã®ãƒãƒ¼ã‚·ãƒ§ãƒ³*".$match[2]."ã‚’å…¥æ‰‹";
 	} else if(preg_match('/compound (.+)\(([0-9]+),([0-9]+)\)/',$action,$match)){
 		$mat1 = $game->matdata[$match[2]]["name"];
 		if($match[3] >= 10){
@@ -757,31 +757,31 @@ global $game;
 		} else {
 			$mat2 = $game->matdata[$match[3]]["name"];
 		}
-		if($match[1] == "success"){$mes = "À®¸ù";}
-		else if($match[1] == "fail"){$mes = "¼ºÇÔ";}
+		if($match[1] == "success"){$mes = "æˆåŠŸ";}
+		else if($match[1] == "fail"){$mes = "å¤±æ•—";}
 		$temp = $mes.":".$mat1."+".$mat2;
 	} else if(preg_match('/order\(([0-9]+)\)/',$action,$match)) {
-		$temp = "ÁÇºà½¸¤á¤ò°ÍÍê(".$match[1].")";
+		$temp = "ç´ æé›†ã‚ã‚’ä¾é ¼(".$match[1].")";
 	} else if(preg_match('/^action\.(.+)/',$action,$match)) {
 		switch($match[1]){
 			case "gather":
-				if($st == "today") $temp = "ÁÇºà½¸¤á¤Ë¹Ô¤¯¤³¤È¤Ë¤·¤Ş¤·¤¿";
-				else $temp = "ÁÇºà½¸¤á¤Ë¹Ô¤­¤Ş¤·¤¿";
+				if($st == "today") $temp = "ç´ æé›†ã‚ã«è¡Œãã“ã¨ã«ã—ã¾ã—ãŸ";
+				else $temp = "ç´ æé›†ã‚ã«è¡Œãã¾ã—ãŸ";
 				break;
 			case "shop":
-				$temp = "³¹¤Ø½Ğ³İ¤±¤Ş¤·¤¿";
+				$temp = "è¡—ã¸å‡ºæ›ã‘ã¾ã—ãŸ";
 				break;
 			case "compound":
-				if($st == "today") $temp = "Ä´¹ç¤ò¹Ô¤¦¤³¤È¤Ë¤·¤Ş¤·¤¿";
-				else $temp = "Ä´¹ç¤ò¹Ô¤¤¤Ş¤·¤¿";
+				if($st == "today") $temp = "èª¿åˆã‚’è¡Œã†ã“ã¨ã«ã—ã¾ã—ãŸ";
+				else $temp = "èª¿åˆã‚’è¡Œã„ã¾ã—ãŸ";
 				break;
 		}
 	} else if(preg_match('/^use potion\(([0-9]+)\)/',$action,$match)) {
-		$temp = $game->potdata[$match[1]]["name"]."¤Î¥İ¡¼¥·¥ç¥ó¤ò»ÈÍÑ";
+		$temp = $game->potdata[$match[1]]["name"]."ã®ãƒãƒ¼ã‚·ãƒ§ãƒ³ã‚’ä½¿ç”¨";
 	} else if(preg_match('/^open\(([0-9])([0-9])\)/',$action,$match)) {
-		$temp = $game->matdata[$match[1]]["name"]."¤È".$game->matdata[$match[2]]["name"]."¤ÎÄ´¹ç¤ò»×¤¤¤Ä¤­¤Ş¤·¤¿";
+		$temp = $game->matdata[$match[1]]["name"]."ã¨".$game->matdata[$match[2]]["name"]."ã®èª¿åˆã‚’æ€ã„ã¤ãã¾ã—ãŸ";
 	} else if(preg_match('/^open\(none\)/',$action,$match)) {
-		$temp = "²¿¤â»×¤¤¤Ä¤­¤Ş¤»¤ó¤Ç¤·¤¿";
+		$temp = "ä½•ã‚‚æ€ã„ã¤ãã¾ã›ã‚“ã§ã—ãŸ";
 	}
 	return array($temp,$mats);
 }
@@ -791,11 +791,11 @@ function printOption() {
 global $game;
 
 if($game->hasPotion())
-print("<input type=\"radio\" name=\"act\" value=\"potion\">¥İ¡¼¥·¥ç¥ó¤Î»ÈÍÑ<br>");
+print("<input type=\"radio\" name=\"act\" value=\"potion\">ãƒãƒ¼ã‚·ãƒ§ãƒ³ã®ä½¿ç”¨<br>");
 
 foreach($game->readGameLog($game->player->id) as $l) {
 	if(preg_match('/use potion\('.TOSI.'\)/',$l)) {
-		print("<input type=\"radio\" name=\"act\" value=\"perspective\">Æ©»ë¤¹¤ë<br>");
+		print("<input type=\"radio\" name=\"act\" value=\"perspective\">é€è¦–ã™ã‚‹<br>");
 		break;
 	}
 }

@@ -40,7 +40,7 @@ class Player{
 		return;
 	}
 
-	#¥×¥ì¥¤¥ä¡¼¤¬»ı¤Ã¤Æ¤¤¤ëÁÇºà¤Î¿ô¤òÇÛÎó¤ÇÊÖ¤¹
+	#ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæŒã£ã¦ã„ã‚‹ç´ æã®æ•°ã‚’é…åˆ—ã§è¿”ã™
 	function getMaterial(){
 		$rarray = array();
 		foreach($this->material as $mat){
@@ -49,7 +49,7 @@ class Player{
 		return $rarray;
 	}
 
-	#Ä´¹ç
+	#èª¿åˆ
 	function compoundMaterial($caul,$double,$mat1, $mat2, $matdata){
 		if(($mes = $this->checkCompoundMaterial($caul,$double,$mat1, $mat2, $matdata)) != ""){
 			return array($mes);
@@ -64,80 +64,80 @@ class Player{
 		$this->material[$mat2]--;
 
 		if($mat1 == BEAT || $mat1 == PRIMEVAL){
-			return array("k¡Ø¥¨¥ê¥¯¥µ¡¼¡Ù¤òÀºÀ½¤·¤Ş¤·¤¿",$this->id.":compound(".$caul.",elixir)",TRUE);
+			return array("kã€ã‚¨ãƒªã‚¯ã‚µãƒ¼ã€ã‚’ç²¾è£½ã—ã¾ã—ãŸ",$this->id.":compound(".$caul.",elixir)",TRUE);
 		} else {
 			if($double) $double = 1;
 			else $double = 0;
-			return array("k¥İ¡¼¥·¥ç¥ó¤òÀºÀ½¤·¤Ş¤·¤¿",$this->id.":compound(".$caul.",".$double.",".$mat1.",".$tmat2.")",TRUE);
+			return array("kãƒãƒ¼ã‚·ãƒ§ãƒ³ã‚’ç²¾è£½ã—ã¾ã—ãŸ",$this->id.":compound(".$caul.",".$double.",".$mat1.",".$tmat2.")",TRUE);
 		}
 	}
 	
-	#Ä´¹ç»şÁÇºà¥Á¥§¥Ã¥¯
+	#èª¿åˆæ™‚ç´ æãƒã‚§ãƒƒã‚¯
 	function checkCompoundMaterial($caul,$double,$mat1, $mat2, $matdata){
 		if($mat2 >= 10){
 			$mat2 = MIMIZU;
 		}
 		if($mat1 == "none" || $mat2 == "none"){
-			return "ÁÇºà¤¬ÁªÂò¤µ¤ì¤Æ¤¤¤Ş¤»¤ó";
+			return "ç´ æãŒé¸æŠã•ã‚Œã¦ã„ã¾ã›ã‚“";
 		}
-		#»ı¤Ã¤Æ¤¤¤Ê¤¤ÁÇºà¤ò»È¤Ã¤¿¤È¤­
+		#æŒã£ã¦ã„ãªã„ç´ æã‚’ä½¿ã£ãŸã¨ã
 		if($this->material[$mat1] <= 0 || $this->material[$mat2] <= 0) {
-			return "ÉÔÀµ¤ÊÆşÎÏ¤Ç¤¹";
+			return "ä¸æ­£ãªå…¥åŠ›ã§ã™";
 		}
 		
-		#ºàÎÁ¤¬Â­¤ê¤Ê¤¤¤È¤­
+		#ææ–™ãŒè¶³ã‚Šãªã„ã¨ã
 		if(($mat1 == $mat2 && $this->material[$mat1] < 2) || 
 		($double && $mat1 == $mat2 && $this->material[$mat1] < 4) || 
 		($double && ($this->material[$mat1] < 2 || $this->material[$mat2] < 2))){
-			return "ºàÎÁ¤¬Â­¤ê¤Ş¤»¤ó";
+			return "ææ–™ãŒè¶³ã‚Šã¾ã›ã‚“";
 		}
 		
-		#Æé´ØÏ¢¤ÎÉÔÀµ½èÍı
+		#é‹é–¢é€£ã®ä¸æ­£å‡¦ç†
 		if(($caul < 0 || $caul > 1) || $this->caul[$caul] == 0 ){
-			return "ÉÔÀµ¤ÊÆşÎÏ¤Ç¤¹";
+			return "ä¸æ­£ãªå…¥åŠ›ã§ã™";
 		}
 		
-		#ÈëÌô¤ò¥¨¥ê¥¯¥µ¡¼°Ê³°¤ÎÁÈ¤ß¹ç¤ï¤»¤Ç»È¤ª¤¦¤È¤·¤¿¤È¤­
+		#ç§˜è–¬ã‚’ã‚¨ãƒªã‚¯ã‚µãƒ¼ä»¥å¤–ã®çµ„ã¿åˆã‚ã›ã§ä½¿ãŠã†ã¨ã—ãŸã¨ã
 		if(($mat1 == 6 && $mat2 != 7) || ($mat1 == 7 && $mat2 != 6) || 
 		($mat1 != 6 && $mat2 == 7) || ($mat1 != 7 && $mat2 == 6)){
-			return "¤³¤ÎÁÈ¤ß¹ç¤ï¤»¤Ç¤Ï¤¦¤Ş¤¯¤¤¤­¤½¤¦¤Ë¤¢¤ê¤Ş¤»¤ó";
+			return "ã“ã®çµ„ã¿åˆã‚ã›ã§ã¯ã†ã¾ãã„ããã†ã«ã‚ã‚Šã¾ã›ã‚“";
 		}
 		
-		#¤¹¤Ç¤Ë»È¤Ã¤Æ¤¤¤ëÆé¤ÇÄ´¹ç¤·¤è¤¦¤È¤·¤¿¤È¤­
+		#ã™ã§ã«ä½¿ã£ã¦ã„ã‚‹é‹ã§èª¿åˆã—ã‚ˆã†ã¨ã—ãŸã¨ã
 		foreach($this->turnlog as $l){
 			if(preg_match('/compound\(([01]),[01],[0-9]+,[0-9]+\)/',$l,$match)){
-				if($caul == $match[1]) return "¤½¤ÎÆé¤Ï´û¤Ë»È¤ï¤ì¤Æ¤¤¤Ş¤¹";
+				if($caul == $match[1]) return "ãã®é‹ã¯æ—¢ã«ä½¿ã‚ã‚Œã¦ã„ã¾ã™";
 			} else if(preg_match('/compound\(([01]),.+\)/',$l,$match)){
-				if($caul == $match[1]) return "¤½¤ÎÆé¤Ï´û¤Ë»È¤ï¤ì¤Æ¤¤¤Ş¤¹";
+				if($caul == $match[1]) return "ãã®é‹ã¯æ—¢ã«ä½¿ã‚ã‚Œã¦ã„ã¾ã™";
 			}
 		}
 		
-		#ÆóÇÜÄ´¹ç¤¬¤Ç¤­¤Ê¤¤¤Î¤Ë¤·¤è¤¦¤È¤·¤¿¤È¤­
+		#äºŒå€èª¿åˆãŒã§ããªã„ã®ã«ã—ã‚ˆã†ã¨ã—ãŸã¨ã
 		if($this->caul[$caul] != 3 && $double){
-			return "¤½¤ÎÆé¤Ç¤ÏÆóÇÜ¤ÎÊ¬ÎÌ¤ÇÄ´¹ç¤Ç¤­¤Ş¤»¤ó";
+			return "ãã®é‹ã§ã¯äºŒå€ã®åˆ†é‡ã§èª¿åˆã§ãã¾ã›ã‚“";
 		}
 		
 		return "";
 	}
 	
-	#¥İ¡¼¥·¥ç¥óÆ±»Î¤ÇÄ´¹ç¤¹¤ë¤È¤­¤Î½èÍı¡£¥Á¥§¥Ã¥¯µ¡Ç½¤âÆâÂ¢¤¹¤ë
+	#ãƒãƒ¼ã‚·ãƒ§ãƒ³åŒå£«ã§èª¿åˆã™ã‚‹ã¨ãã®å‡¦ç†ã€‚ãƒã‚§ãƒƒã‚¯æ©Ÿèƒ½ã‚‚å†…è”µã™ã‚‹
 	function compoundPotion($caul,$matdata,$potdata){
 		$potarray = array();
 		for($i=0;$i<POTION_NO;$i++){
 			if(isset($_POST["pot".$i])) array_push($potarray,$i);
 		}
 		if(count($potarray) == 0){
-			return array("¥İ¡¼¥·¥ç¥ó¤¬¤Ò¤È¤Ä¤âÁªÂò¤µ¤ì¤Æ¤¤¤Ş¤»¤ó");
+			return array("ãƒãƒ¼ã‚·ãƒ§ãƒ³ãŒã²ã¨ã¤ã‚‚é¸æŠã•ã‚Œã¦ã„ã¾ã›ã‚“");
 		} else if(count($potarray) == 1){
-			return array("¥İ¡¼¥·¥ç¥ó¤¬¤Ò¤È¤Ä¤·¤«ÁªÂò¤µ¤ì¤Æ¤¤¤Ş¤»¤ó");
+			return array("ãƒãƒ¼ã‚·ãƒ§ãƒ³ãŒã²ã¨ã¤ã—ã‹é¸æŠã•ã‚Œã¦ã„ã¾ã›ã‚“");
 		} else if(count($potarray) != 3 && count($potarray) != 4){
-			return array("¤³¤ÎÁÈ¤ß¹ç¤ï¤»¤Ç¤Ï¤¦¤Ş¤¯¤¤¤­¤½¤¦¤Ë¤¢¤ê¤Ş¤»¤ó");
+			return array("ã“ã®çµ„ã¿åˆã‚ã›ã§ã¯ã†ã¾ãã„ããã†ã«ã‚ã‚Šã¾ã›ã‚“");
 		}
 		
-		#¤¹¤Ç¤Ë»È¤Ã¤Æ¤¤¤ëÆé¤ÇÄ´¹ç¤·¤è¤¦¤È¤·¤¿¤È¤­
+		#ã™ã§ã«ä½¿ã£ã¦ã„ã‚‹é‹ã§èª¿åˆã—ã‚ˆã†ã¨ã—ãŸã¨ã
 		foreach($this->turnlog as $l){
 			if(preg_match('/compound\(([01]),/',$l,$match)){
-				if($caul == $match[1]) {return array("¤½¤ÎÆé¤Ï´û¤Ë»È¤ï¤ì¤Æ¤¤¤Ş¤¹");}
+				if($caul == $match[1]) {return array("ãã®é‹ã¯æ—¢ã«ä½¿ã‚ã‚Œã¦ã„ã¾ã™");}
 			}
 		}
 		
@@ -152,9 +152,9 @@ class Player{
 				$this->potion[$potarray[0]]--;
 				$this->potion[$potarray[1]]--;
 				$this->potion[$potarray[2]]--;
-				return array("k".$matdata[6]["name"]."¤òÀºÀ½¤·¤Ş¤·¤¿",$this->id.":compound(".$caul.",primeval)",TRUE);
+				return array("k".$matdata[6]["name"]."ã‚’ç²¾è£½ã—ã¾ã—ãŸ",$this->id.":compound(".$caul.",primeval)",TRUE);
 			} else {
-				return array("¤³¤ÎÁÈ¤ß¹ç¤ï¤»¤Ç¤Ï¤¦¤Ş¤¯¤¤¤­¤½¤¦¤Ë¤¢¤ê¤Ş¤»¤ó");
+				return array("ã“ã®çµ„ã¿åˆã‚ã›ã§ã¯ã†ã¾ãã„ããã†ã«ã‚ã‚Šã¾ã›ã‚“");
 			}
 		} else if(count($potarray) == 4){
 			$flag = array(0,0,0,0);
@@ -168,14 +168,14 @@ class Player{
 				$this->potion[$potarray[1]]--;
 				$this->potion[$potarray[2]]--;
 				$this->potion[$potarray[3]]--;
-				return array("k".$matdata[7]["name"]."¤òÀºÀ½¤·¤Ş¤·¤¿",$this->id.":compound(".$caul.",beat)",TRUE);
+				return array("k".$matdata[7]["name"]."ã‚’ç²¾è£½ã—ã¾ã—ãŸ",$this->id.":compound(".$caul.",beat)",TRUE);
 			} else {
-				return array("¤³¤ÎÁÈ¤ß¹ç¤ï¤»¤Ç¤Ï¤¦¤Ş¤¯¤¤¤­¤½¤¦¤Ë¤¢¤ê¤Ş¤»¤ó");
+				return array("ã“ã®çµ„ã¿åˆã‚ã›ã§ã¯ã†ã¾ãã„ããã†ã«ã‚ã‚Šã¾ã›ã‚“");
 			}
 		}
 	}
 	
-	#Æé¤Î¿ô¤ò¥Á¥§¥Ã¥¯¡¢Ä´¹ç²ÄÇ½¿ô¤òÄ´¤Ù¤ë
+	#é‹ã®æ•°ã‚’ãƒã‚§ãƒƒã‚¯ã€èª¿åˆå¯èƒ½æ•°ã‚’èª¿ã¹ã‚‹
 	function checkCauldronNum(){
 		$count = 0;
 		$caul = 0;
@@ -188,14 +188,14 @@ class Player{
 		else {return FALSE;}
 	}
 	
-	#»ØÄê¤Î¥×¥ì¥¤¥ä¡¼¤¬»ØÄê¤ÎÁÇºà£²¤Ä¤ÎÄ´¹ç¥ì¥·¥Ô¤òÆÀ¤ë
+	#æŒ‡å®šã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæŒ‡å®šã®ç´ æï¼’ã¤ã®èª¿åˆãƒ¬ã‚·ãƒ”ã‚’å¾—ã‚‹
 	function learnPotionTable($mat1, $mat2){
 		$this->ptable[$mat1][$mat2] = TRUE;
 		$this->ptable[$mat2][$mat1] = TRUE;
 		return;
 	}
 
-	#¥¿¡¼¥ó½ªÎ»»ş¤ÎÄ´¹ç¤Î½èÍı
+	#ã‚¿ãƒ¼ãƒ³çµ‚äº†æ™‚ã®èª¿åˆã®å‡¦ç†
 	function resolveCompound($log,$potiontable) {
 		$rarray = array();
 		foreach($log as $l){
@@ -203,7 +203,7 @@ class Player{
 				$mat1 = $match[3];
 				if($match[4] >= 10){$tmat2 = $match[4]; $mat2 = $match[4]-10;}
 				else {$mat2 = $match[4]; $tmat2 = $match[4];}
-				#´ûÃÎ¤Î¥ì¥·¥Ô¤Î¾ì¹ç
+				#æ—¢çŸ¥ã®ãƒ¬ã‚·ãƒ”ã®å ´åˆ
 				if(isset($this->ptable[$mat1][$mat2]) && $potiontable[$mat1][$mat2] != 100){
 					if(($fail = $this->awkward - $this->conse*2) > 0 && mt_rand(1,6-$fail) == 1){
 						array_push($rarray, $this->id.":compound fail(".$mat1.",".$tmat2.")");
@@ -220,7 +220,7 @@ class Player{
 						array_push($rarray, $this->id.":compound fail(".$mat1.",".$tmat2.")");
 						$this->learnPotionTable($mat1,$mat2);
 					} else {
-						#1/2¤Î³ÎÎ¨¤Ç¼ºÇÔ¤¹¤ë+½¸Ãæ¡¢ÉÔ´ïÍÑ¤Î¥İ¡¼¥·¥ç¥ó¤Ë¤è¤ëÊäÀµ
+						#1/2ã®ç¢ºç‡ã§å¤±æ•—ã™ã‚‹+é›†ä¸­ã€ä¸å™¨ç”¨ã®ãƒãƒ¼ã‚·ãƒ§ãƒ³ã«ã‚ˆã‚‹è£œæ­£
 						$suc = $this->conse*2 - $this->awkward;
 						if(mt_rand(1,6) > 3 - $suc){
 							if($this->caul[$match[1]] == 3 && $match[2] == "1") $getp=4;
@@ -258,7 +258,7 @@ class Player{
 		return $rarray;
 	}
 	
-	#¥¿¡¼¥ó½ªÎ»»ş¤Î³¹¤Î½èÍı
+	#ã‚¿ãƒ¼ãƒ³çµ‚äº†æ™‚ã®è¡—ã®å‡¦ç†
 	function resolveShop($log,$matdata){
 		$rarray = array();
 		foreach($log as $l){
@@ -270,84 +270,84 @@ class Player{
 		return $rarray;
 	}
 	
-	#¥¢¥¤¥Æ¥à¤òÇã¤¦½èÍı
+	#ã‚¢ã‚¤ãƒ†ãƒ ã‚’è²·ã†å‡¦ç†
 	function buyItem($item,$int,$matdata,$potdata,$moon){
-		if($item == "none") return array("¥¢¥¤¥Æ¥à¤òÁªÂò¤·¤Æ¤¯¤À¤µ¤¤");
-		if($item < 0 || !is_numeric($item)) return array("ÉÔÀµ¤ÊÆşÎÏ¤Ç¤¹");
+		if($item == "none") return array("ã‚¢ã‚¤ãƒ†ãƒ ã‚’é¸æŠã—ã¦ãã ã•ã„");
+		if($item < 0 || !is_numeric($item)) return array("ä¸æ­£ãªå…¥åŠ›ã§ã™");
 		
 		if($item == 100 || $item == 101){
-			if($this->caul[$item-100] >= MAX_CAULDRON ) return array("ÉÔÀµ¤ÊÆşÎÏ¤Ç¤¹");
+			if($this->caul[$item-100] >= MAX_CAULDRON ) return array("ä¸æ­£ãªå…¥åŠ›ã§ã™");
 			switch($this->caul[$item-100]){
 				case 0:$cprice = PRICE_CAULDRON1;break;
 				case 1:$cprice = PRICE_CAULDRON2;break;
 				case 2:$cprice = PRICE_CAULDRON3;break;
 			}
-			if($this->gold < $cprice) return array("¤ª¶â¤¬Â­¤ê¤Ş¤»¤ó");
+			if($this->gold < $cprice) return array("ãŠé‡‘ãŒè¶³ã‚Šã¾ã›ã‚“");
 			$this->gold -= $cprice;
 			$this->caul[$item-100]++;
 			if($this->caul[$item-100] == 1){
-				return array("k¥³¥ó¥í¤ò³ÈÄ¥¤·¤Ş¤·¤¿",$this->id.":buy(cauldron".($item-100).")",TRUE);
+				return array("kã‚³ãƒ³ãƒ­ã‚’æ‹¡å¼µã—ã¾ã—ãŸ",$this->id.":buy(cauldron".($item-100).")",TRUE);
 			} else {
-				return array("kÆé".($item-99)."¤òÂç¤­¤¯¤·¤Ş¤·¤¿",$this->id.":buy(cauldron".($item-100).")",TRUE);
+				return array("ké‹".($item-99)."ã‚’å¤§ããã—ã¾ã—ãŸ",$this->id.":buy(cauldron".($item-100).")",TRUE);
 			}
 		} else if($item >= 50){
 			$titem = $item;
 			$item -= 50;
 			$buy = "buy";
 			if($this->nego || $moon == 0) $buy = "sprice";
-			if($this->gold < $matdata[$item][$buy]*$int) return array("¤ª¶â¤¬Â­¤ê¤Ş¤»¤ó");
+			if($this->gold < $matdata[$item][$buy]*$int) return array("ãŠé‡‘ãŒè¶³ã‚Šã¾ã›ã‚“");
 			$this->gold -= $matdata[$item][$buy]*$int;
 			$this->material[$item] += $int;
-			return array("k".$matdata[$item]["name"]."¤ò".$int."¸Ä¹ØÆş¤·¤Ş¤·¤¿",$this->id.":buy(".$titem.",".$int.")",TRUE);
+			return array("k".$matdata[$item]["name"]."ã‚’".$int."å€‹è³¼å…¥ã—ã¾ã—ãŸ",$this->id.":buy(".$titem.",".$int.")",TRUE);
 		} else {
 			$buy = "buy";
 			if($this->nego || $moon == 0) $buy = "sprice";
-			if($this->gold < $potdata[$item][$buy]*$int) return array("¤ª¶â¤¬Â­¤ê¤Ş¤»¤ó");
+			if($this->gold < $potdata[$item][$buy]*$int) return array("ãŠé‡‘ãŒè¶³ã‚Šã¾ã›ã‚“");
 			$this->gold -= $potdata[$item][$buy]*$int;
 			$this->potion[$item] += $int;
-			return array("k".$potdata[$item]["name"]."¤Î¥İ¡¼¥·¥ç¥ó¤ò".$int."¸Ä¹ØÆş¤·¤Ş¤·¤¿",$this->id.":buy(".$item.",".$int.")",TRUE);
+			return array("k".$potdata[$item]["name"]."ã®ãƒãƒ¼ã‚·ãƒ§ãƒ³ã‚’".$int."å€‹è³¼å…¥ã—ã¾ã—ãŸ",$this->id.":buy(".$item.",".$int.")",TRUE);
 		}
-		return array("buyItem:ÅşÃ£ÉÔÇ½");
+		return array("buyItem:åˆ°é”ä¸èƒ½");
 	}
 	
-	#¥¢¥¤¥Æ¥à¤òÇä¤ë½èÍı
+	#ã‚¢ã‚¤ãƒ†ãƒ ã‚’å£²ã‚‹å‡¦ç†
 	function sellItem($item,$int,$matdata,$potdata){
-		if($item == "none") return array("¥¢¥¤¥Æ¥à¤òÁªÂò¤·¤Æ¤¯¤À¤µ¤¤");
-		if($item < 0 || !is_numeric($item)) return array("ÉÔÀµ¤ÊÆşÎÏ¤Ç¤¹");
+		if($item == "none") return array("ã‚¢ã‚¤ãƒ†ãƒ ã‚’é¸æŠã—ã¦ãã ã•ã„");
+		if($item < 0 || !is_numeric($item)) return array("ä¸æ­£ãªå…¥åŠ›ã§ã™");
 		
 		if($item >= 50){
 			$titem = $item;
 			$item -= 50;
-			if($this->material[$item] <= 0) return array("ÉÔÀµ¤ÊÆşÎÏ¤Ç¤¹");
-			if($this->material[$item] < $int) return array("¤½¤ó¤Ê¤Ë»ı¤Ã¤Æ¤¤¤Ş¤»¤ó");
+			if($this->material[$item] <= 0) return array("ä¸æ­£ãªå…¥åŠ›ã§ã™");
+			if($this->material[$item] < $int) return array("ãã‚“ãªã«æŒã£ã¦ã„ã¾ã›ã‚“");
 			$this->gold += $matdata[$item]["sell"]*$int;
 			$this->material[$item] -= $int;
-			return array("k".$matdata[$item]["name"]."¤ò".$int."¸ÄÇäµÑ¤·¤Ş¤·¤¿",$this->id.":sell(".$titem.",".$int.")",TRUE);
+			return array("k".$matdata[$item]["name"]."ã‚’".$int."å€‹å£²å´ã—ã¾ã—ãŸ",$this->id.":sell(".$titem.",".$int.")",TRUE);
 		} else {
 			$sell = "sell";
 			if($this->nego) $sell = "sprice";
-			if($this->potion[$item] <= 0) return array("ÉÔÀµ¤ÊÆşÎÏ¤Ç¤¹");
-			if($this->potion[$item] < $int) return array("¤½¤ó¤Ê¤Ë»ı¤Ã¤Æ¤¤¤Ş¤»¤ó");
+			if($this->potion[$item] <= 0) return array("ä¸æ­£ãªå…¥åŠ›ã§ã™");
+			if($this->potion[$item] < $int) return array("ãã‚“ãªã«æŒã£ã¦ã„ã¾ã›ã‚“");
 			$this->gold += $potdata[$item][$sell]*$int;
 			$this->potion[$item] -= $int;
-			return array("k".$potdata[$item]["name"]."¤Î¥İ¡¼¥·¥ç¥ó¤ò".$int."¸ÄÇäµÑ¤·¤Ş¤·¤¿",$this->id.":sell(".$item.",".$int.")",TRUE);
+			return array("k".$potdata[$item]["name"]."ã®ãƒãƒ¼ã‚·ãƒ§ãƒ³ã‚’".$int."å€‹å£²å´ã—ã¾ã—ãŸ",$this->id.":sell(".$item.",".$int.")",TRUE);
 		}
-		return array("buyItem:ÅşÃ£ÉÔÇ½");
+		return array("buyItem:åˆ°é”ä¸èƒ½");
 	}
 	
-	#ÁÇºà½¸¤á°ÍÍê»ş¤Î½èÍı
+	#ç´ æé›†ã‚ä¾é ¼æ™‚ã®å‡¦ç†
 	function orderGathering($fee){
 		if($fee <= 0){
-			return array("ÃÍ¤¬ÉÔÀµ¤Ç¤¹");
+			return array("å€¤ãŒä¸æ­£ã§ã™");
 		} else if($fee*PRICE_ORDER > $this->gold){
-			return array("¤ª¶â¤¬Â­¤ê¤Ş¤»¤ó");
+			return array("ãŠé‡‘ãŒè¶³ã‚Šã¾ã›ã‚“");
 		} else {
 			$this->gold -= $fee*PRICE_ORDER;
-			return array("kÁÇºà½¸¤á¤ò°ÍÍê¤·¤Ş¤·¤¿(¼ı³ÏÎÌ:".$fee.")",$this->id.":order(".$fee.")",TRUE);
+			return array("kç´ æé›†ã‚ã‚’ä¾é ¼ã—ã¾ã—ãŸ(åç©«é‡:".$fee.")",$this->id.":order(".$fee.")",TRUE);
 		}
 	}
 	
-	#ÁÇºà½¸¤á¤ò°ÍÍê¤·¤Æ¤¤¤¿¤È¤­¤Î½èÍı
+	#ç´ æé›†ã‚ã‚’ä¾é ¼ã—ã¦ã„ãŸã¨ãã®å‡¦ç†
 	function resolveOrder($order,$matdata){
 
 		$count = 2;
@@ -380,7 +380,7 @@ class Player{
 		return $rarray;
 	}
 	
-	#¥¿¡¼¥ó½ªÎ»»ş¤ÎÁÇºà½¸¤á¤Î½èÍı
+	#ã‚¿ãƒ¼ãƒ³çµ‚äº†æ™‚ã®ç´ æé›†ã‚ã®å‡¦ç†
 	function resolveGather($log,$matdata,$moon){
 		$count = 3;
 		$rarray = array();
@@ -427,19 +427,19 @@ class Player{
 		return $rarray;
 	}
 
-	#¥İ¡¼¥·¥ç¥ó¤ò»È¤Ã¤¿¤È¤­¤Î½èÍı
+	#ãƒãƒ¼ã‚·ãƒ§ãƒ³ã‚’ä½¿ã£ãŸã¨ãã®å‡¦ç†
 	function usePotion($pot,$potdata) {
 		if($pot == "none"){
-			return array("»ÈÍÑ¤¹¤ë¥İ¡¼¥·¥ç¥ó¤òÁªÂò¤·¤Æ¤¯¤À¤µ¤¤");
+			return array("ä½¿ç”¨ã™ã‚‹ãƒãƒ¼ã‚·ãƒ§ãƒ³ã‚’é¸æŠã—ã¦ãã ã•ã„");
 		}
 		if($pot >= POTION_NO || $pot < 0 || $this->potion[$pot] <= 0){
-			return array("ÉÔÀµ¤ÊÆşÎÏ¤Ç¤¹");
+			return array("ä¸æ­£ãªå…¥åŠ›ã§ã™");
 		}
 		$this->potion[$pot]--;
-		return array("k".$potdata[$pot]["name"]."¤Î¥İ¡¼¥·¥ç¥ó¤ò»ÈÍÑ¤·¤Ş¤·¤¿",$this->id.":use potion(".$pot.")",TRUE);
+		return array("k".$potdata[$pot]["name"]."ã®ãƒãƒ¼ã‚·ãƒ§ãƒ³ã‚’ä½¿ç”¨ã—ã¾ã—ãŸ",$this->id.":use potion(".$pot.")",TRUE);
 	}
 	
-	#¥İ¡¼¥·¥ç¥ó¤Î½ê»ı¿ô¤òÊÖ¤¹
+	#ãƒãƒ¼ã‚·ãƒ§ãƒ³ã®æ‰€æŒæ•°ã‚’è¿”ã™
 	function getPotionNum(){
 		$count = 0;
 		for($i=0;$i<POTION_NO;$i++){
@@ -448,7 +448,7 @@ class Player{
 		return $count;
 	}
 	
-	#´ûÃÎ¤Î¥ì¥·¥Ô¤Î¿ô¤òÊÖ¤¹
+	#æ—¢çŸ¥ã®ãƒ¬ã‚·ãƒ”ã®æ•°ã‚’è¿”ã™
 	function getTableNum() {
 		$count = 0;
 		for($i=0;$i<5;$i++){
@@ -460,7 +460,7 @@ class Player{
 		return $count;
 	}
 
-	#ËºµÑ¤Î¼ö¤¤¤Ç¥ì¥·¥Ô¤¬¾Ã¤¨¤ë¤È¤­¤Î½èÍı
+	#å¿˜å´ã®å‘ªã„ã§ãƒ¬ã‚·ãƒ”ãŒæ¶ˆãˆã‚‹ã¨ãã®å‡¦ç†
 	function lostRecipe() {
 		if($this->getTableNum == 0) return FALSE;
 		$x = 100;

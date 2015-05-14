@@ -9,7 +9,7 @@ define("ADMINPASS", "adminpass");
 
 session_start();
 
-#¥í¥Ã¥¯³«»Ï ¥²¡¼¥àÅª¤Ë¾×ÆÍ¤¹¤ë¤È¥¢¥ì¤Ê¤Î¤Ç¤Ò¤È¤ê¤º¤Ä½èÍý¤¹¤ë
+#ãƒ­ãƒƒã‚¯é–‹å§‹ ã‚²ãƒ¼ãƒ çš„ã«è¡çªã™ã‚‹ã¨ã‚¢ãƒ¬ãªã®ã§ã²ã¨ã‚Šãšã¤å‡¦ç†ã™ã‚‹
 $lock_fp = fopen("lockfile","r+");
 flock($lock_fp,LOCK_EX);
 
@@ -23,7 +23,7 @@ if(isset($_POST["mode"])){
 	switch($_POST["mode"]) {
 		case "login":
 			if(!isset($_POST["id"]) || !isset($_POST["pass"])){
-				printLogin("ÉÔÀµ¤Ê¥Ç¡¼¥¿¤¬Á÷¿®¤µ¤ì¤Þ¤·¤¿");
+				printLogin("ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿ãŒé€ä¿¡ã•ã‚Œã¾ã—ãŸ");
 			} else if(($loginres = $game->checkLogin($_POST["id"], $_POST["pass"])) != "ok"){
 				printLogin($loginres);
 			} else {
@@ -33,9 +33,9 @@ if(isset($_POST["mode"])){
 			break;
 		case "select":
 			if(!isset($_SESSION["id"])){
-				printLogin("¥í¥°¥¤¥ó¤·Ä¾¤·¤Æ¤¯¤À¤µ¤¤");
+				printLogin("ãƒ­ã‚°ã‚¤ãƒ³ã—ç›´ã—ã¦ãã ã•ã„");
 			} else if(!isset($_POST["act"])){
-				printActMain("¹ÔÆ°¤òÁªÂò¤·¤Æ¤¯¤À¤µ¤¤");
+				printActMain("è¡Œå‹•ã‚’é¸æŠžã—ã¦ãã ã•ã„");
 			} else {
 				$mes = $game->setAction($_POST["act"]);
 				printActMain($mes);
@@ -50,7 +50,7 @@ if(isset($_POST["mode"])){
 			break;
 		case "signup":
 			if(!isset($_POST["id"]) || !isset($_POST["pass"]) || !isset($_POST["name"])){
-				printLogin("ÉÔÀµ¤Ê¥Ç¡¼¥¿¤¬Á÷¿®¤µ¤ì¤Þ¤·¤¿");
+				printLogin("ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿ãŒé€ä¿¡ã•ã‚Œã¾ã—ãŸ");
 			} else if(($signupres = $game->checkSignUp($_POST["id"], $_POST["pass"], $_POST["name"])) != "ok"){
 				printLogin($signupres);
 			} else {
@@ -93,7 +93,7 @@ if(isset($_POST["mode"])){
 	}
 }
 
-#¥í¥Ã¥¯²ò½ü
+#ãƒ­ãƒƒã‚¯è§£é™¤
 fclose($lock_fp);
 
 ?>
